@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - include:
+      file: /db/changelog/changes/create-workers-table.sql
+  - include:
+      file: /db/changelog/changes/create-cars-table.sql
+  - include:
+      file: /db/changelog/changes/create-products-table.sql
+  - include:
+      file: /db/changelog/changes/create-proposals-table.sql
+  - include:
+      file: /db/changelog/changes/create-orders-table.sql
+  - include:
+      file: /db/changelog/changes/create-owners-table.sql
+  - include:
+      file: /db/changelog/changes/add-order-id-column-to-proposals-table.sql
+  - include:
+      file: /db/changelog/changes/add-owner-id-column-to-cars-table.sql
+  - include:
+      file: /db/changelog/changes/add-order-id-column-to-workers-table.sql
+
+
+
+
+
+
