@@ -50,6 +50,6 @@ public class WorkerServiceImpl implements WorkerService {
                 }
             }
         }
-       return salary.multiply(BigDecimal.valueOf(0.4));
+        return salary.multiply(BigDecimal.valueOf(0.4));
     }
 }
