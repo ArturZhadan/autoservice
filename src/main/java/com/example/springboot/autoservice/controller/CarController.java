@@ -1,8 +1,8 @@
 package com.example.springboot.autoservice.controller;
 
-import com.example.springboot.autoservice.dto.CarRequestDto;
-import com.example.springboot.autoservice.dto.CarResponseDto;
 import com.example.springboot.autoservice.dto.mapper.CarMapper;
+import com.example.springboot.autoservice.dto.request.CarRequestDto;
+import com.example.springboot.autoservice.dto.response.CarResponseDto;
 import com.example.springboot.autoservice.model.Car;
 import com.example.springboot.autoservice.service.CarService;
 import io.swagger.annotations.ApiOperation;

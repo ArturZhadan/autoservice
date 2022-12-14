@@ -1,7 +1,7 @@
 package com.example.springboot.autoservice.dto.mapper;
 
-import com.example.springboot.autoservice.dto.ProductRequestDto;
-import com.example.springboot.autoservice.dto.ProductResponseDto;
+import com.example.springboot.autoservice.dto.request.ProductRequestDto;
+import com.example.springboot.autoservice.dto.response.ProductResponseDto;
 import com.example.springboot.autoservice.model.Product;
 import org.springframework.stereotype.Component;
 

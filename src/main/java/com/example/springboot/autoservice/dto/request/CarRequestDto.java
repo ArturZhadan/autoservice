@@ -1,12 +1,11 @@
-package com.example.springboot.autoservice.dto;
+package com.example.springboot.autoservice.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CarResponseDto {
-    private Long id;
+public class CarRequestDto {
     private String manufacturer;
     private String model;
     private int year;

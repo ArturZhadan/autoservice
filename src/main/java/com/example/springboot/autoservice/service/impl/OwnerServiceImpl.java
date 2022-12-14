@@ -25,8 +25,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public List<Order> findAllOrdersByOwnerId(Long id) {
-        return ownerRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Can`t find owner by id " + id)).getOrders();
+        return ownerRepository.findAllOrdersByOwnerId(id);
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.example.springboot.autoservice.controller;
 
-import com.example.springboot.autoservice.dto.OrderResponseDto;
-import com.example.springboot.autoservice.dto.OwnerRequestDto;
-import com.example.springboot.autoservice.dto.OwnerResponseDto;
 import com.example.springboot.autoservice.dto.mapper.OrderMapper;
 import com.example.springboot.autoservice.dto.mapper.OwnerMapper;
+import com.example.springboot.autoservice.dto.request.OwnerRequestDto;
+import com.example.springboot.autoservice.dto.response.OrderResponseDto;
+import com.example.springboot.autoservice.dto.response.OwnerResponseDto;
 import com.example.springboot.autoservice.model.Owner;
 import com.example.springboot.autoservice.service.OwnerService;
 import io.swagger.annotations.ApiOperation;

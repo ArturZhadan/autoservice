@@ -1,4 +1,4 @@
-package com.example.springboot.autoservice.dto;
+package com.example.springboot.autoservice.dto.response;
 
 import java.util.List;
 import lombok.Getter;
@@ -6,7 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class WorkerRequestDto {
+public class WorkerResponseDto {
+    private Long id;
     private String firstName;
     private String lastName;
     private List<Long> orderIds;

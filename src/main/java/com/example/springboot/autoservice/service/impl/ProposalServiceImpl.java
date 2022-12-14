@@ -25,13 +25,11 @@ public class ProposalServiceImpl implements ProposalService {
     }
 
     @Override
-    public void updateProposalStatus(Long id, String key, String value) {
+    public void updateProposalStatus(Long id, String proposalStatus) {
         Optional<Proposal> optionalProposal = proposalRepository.findById(id);
         if (optionalProposal.isPresent()) {
             Proposal proposal = optionalProposal.get();
-            if (key.equalsIgnoreCase("proposalStatus")) {
-                proposal.setProposalStatus(ProposalStatus.valueOf(value));
-            }
+            proposal.setProposalStatus(ProposalStatus.valueOf(proposalStatus));
             proposalRepository.save(proposal);
         }
     }

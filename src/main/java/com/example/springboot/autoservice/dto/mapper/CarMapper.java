@@ -1,7 +1,7 @@
 package com.example.springboot.autoservice.dto.mapper;
 
-import com.example.springboot.autoservice.dto.CarRequestDto;
-import com.example.springboot.autoservice.dto.CarResponseDto;
+import com.example.springboot.autoservice.dto.request.CarRequestDto;
+import com.example.springboot.autoservice.dto.response.CarResponseDto;
 import com.example.springboot.autoservice.model.Car;
 import com.example.springboot.autoservice.service.OwnerService;
 import lombok.RequiredArgsConstructor;

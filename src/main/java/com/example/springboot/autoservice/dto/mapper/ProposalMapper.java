@@ -1,7 +1,7 @@
 package com.example.springboot.autoservice.dto.mapper;
 
-import com.example.springboot.autoservice.dto.ProposalRequestDto;
-import com.example.springboot.autoservice.dto.ProposalResponseDto;
+import com.example.springboot.autoservice.dto.request.ProposalRequestDto;
+import com.example.springboot.autoservice.dto.response.ProposalResponseDto;
 import com.example.springboot.autoservice.model.Proposal;
 import com.example.springboot.autoservice.model.ProposalStatus;
 import com.example.springboot.autoservice.service.OrderService;

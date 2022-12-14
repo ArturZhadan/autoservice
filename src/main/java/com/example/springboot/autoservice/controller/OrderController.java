@@ -1,10 +1,10 @@
 package com.example.springboot.autoservice.controller;
 
-import com.example.springboot.autoservice.dto.OrderProductRequestDto;
-import com.example.springboot.autoservice.dto.OrderRequestDto;
-import com.example.springboot.autoservice.dto.OrderResponseDto;
-import com.example.springboot.autoservice.dto.OrderStatusRequestDto;
 import com.example.springboot.autoservice.dto.mapper.OrderMapper;
+import com.example.springboot.autoservice.dto.request.OrderProductRequestDto;
+import com.example.springboot.autoservice.dto.request.OrderRequestDto;
+import com.example.springboot.autoservice.dto.request.OrderStatusRequestDto;
+import com.example.springboot.autoservice.dto.response.OrderResponseDto;
 import com.example.springboot.autoservice.model.Order;
 import com.example.springboot.autoservice.service.OrderService;
 import io.swagger.annotations.ApiOperation;
@@ -48,9 +48,7 @@ public class OrderController {
     @ApiOperation(value = "update order status by id")
     public OrderResponseDto updateOrderStatus(@PathVariable @ApiParam(value = "order id") Long id,
                                   @RequestBody OrderStatusRequestDto dto) {
-        if (dto.getOperation().equalsIgnoreCase("update")) {
-            orderService.updateOrderStatus(id, dto.getKey(), dto.getValue());
-        }
+        orderService.updateOrderStatus(id, dto.getOrderStatus());
         return orderMapper.toDto(orderService.findById(id));
     }
 
@@ -58,9 +56,7 @@ public class OrderController {
     @ApiOperation(value = "add product to products list by order id")
     public OrderResponseDto updateProductsList(@PathVariable @ApiParam(value = "order id") Long id,
                                        @RequestBody OrderProductRequestDto dto) {
-        if (dto.getOperation().equalsIgnoreCase("add")) {
-            orderService.updateProductsList(id, dto.getKey(), dto.getProductsIds());
-        }
+        orderService.updateProductsList(id, dto.getProductsIds());
         return orderMapper.toDto(orderService.findById(id));
     }
 

@@ -1,7 +1,7 @@
 package com.example.springboot.autoservice.dto.mapper;
 
-import com.example.springboot.autoservice.dto.WorkerRequestDto;
-import com.example.springboot.autoservice.dto.WorkerResponseDto;
+import com.example.springboot.autoservice.dto.request.WorkerRequestDto;
+import com.example.springboot.autoservice.dto.response.WorkerResponseDto;
 import com.example.springboot.autoservice.model.Order;
 import com.example.springboot.autoservice.model.Worker;
 import com.example.springboot.autoservice.service.OrderService;

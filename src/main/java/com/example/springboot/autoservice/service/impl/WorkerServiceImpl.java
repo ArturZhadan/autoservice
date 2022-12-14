@@ -5,6 +5,7 @@ import com.example.springboot.autoservice.model.Proposal;
 import com.example.springboot.autoservice.model.ProposalStatus;
 import com.example.springboot.autoservice.model.Worker;
 import com.example.springboot.autoservice.repository.WorkerRepository;
+import com.example.springboot.autoservice.service.ProposalService;
 import com.example.springboot.autoservice.service.WorkerService;
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class WorkerServiceImpl implements WorkerService {
+    private static final double WORKER_SALARY = 0.4;
     private final WorkerRepository workerRepository;
+    private final ProposalService proposalService;
 
     @Override
     public Worker save(Worker worker) {
@@ -34,22 +37,25 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public List<Order> findAllOrdersByWorkerId(Long id) {
-        return findById(id).getOrders();
+        return workerRepository.findAllOrdersByWorkerId(id);
+    }
+
+    @Override
+    public List<Proposal> findAllProposalsByWorkerId(Long id) {
+        return workerRepository.findAllProposalsByWorkerId(id);
     }
 
     @Override
     public BigDecimal getSalary(Long id) {
-        List<Order> ordersByWorkerId = findAllOrdersByWorkerId(id);
         BigDecimal salary = BigDecimal.ZERO;
-        for (Order order : ordersByWorkerId) {
-            List<Proposal> proposals = order.getProposals();
-            for (Proposal proposal : proposals) {
-                if (proposal.getProposalStatus().equals(ProposalStatus.NOT_PAID)) {
-                    salary = salary.add(proposal.getProposalPrice());
-                    proposal.setProposalStatus(ProposalStatus.PAID);
-                }
+        List<Proposal> proposals = findAllProposalsByWorkerId(id);
+        for (Proposal proposal : proposals) {
+            if (proposal.getProposalStatus().equals(ProposalStatus.NOT_PAID)) {
+                salary = salary.add(proposal.getProposalPrice());
+                proposal.setProposalStatus(ProposalStatus.PAID);
+                proposalService.save(proposal);
             }
         }
-        return salary.multiply(BigDecimal.valueOf(0.4));
+        return salary.multiply(BigDecimal.valueOf(WORKER_SALARY));
     }
 }

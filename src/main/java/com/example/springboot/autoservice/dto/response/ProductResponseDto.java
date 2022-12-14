@@ -1,4 +1,4 @@
-package com.example.springboot.autoservice.dto;
+package com.example.springboot.autoservice.dto.response;
 
 import java.math.BigDecimal;
 import lombok.Getter;

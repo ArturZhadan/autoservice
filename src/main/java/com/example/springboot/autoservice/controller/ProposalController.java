@@ -1,9 +1,9 @@
 package com.example.springboot.autoservice.controller;
 
-import com.example.springboot.autoservice.dto.ProposalRequestDto;
-import com.example.springboot.autoservice.dto.ProposalResponseDto;
-import com.example.springboot.autoservice.dto.ProposalStatusRequestDto;
 import com.example.springboot.autoservice.dto.mapper.ProposalMapper;
+import com.example.springboot.autoservice.dto.request.ProposalRequestDto;
+import com.example.springboot.autoservice.dto.request.ProposalStatusRequestDto;
+import com.example.springboot.autoservice.dto.response.ProposalResponseDto;
 import com.example.springboot.autoservice.model.Proposal;
 import com.example.springboot.autoservice.service.ProposalService;
 import io.swagger.annotations.ApiOperation;
@@ -46,9 +46,7 @@ public class ProposalController {
     public ProposalResponseDto updateProposalStatus(@PathVariable
                                                         @ApiParam(value = "proposal id") Long id,
                                      @RequestBody ProposalStatusRequestDto dto) {
-        if (dto.getOperation().equalsIgnoreCase("update")) {
-            proposalService.updateProposalStatus(id, dto.getKey(), dto.getValue());
-        }
+        proposalService.updateProposalStatus(id, dto.getProposalStatus());
         return proposalMapper.toDto(proposalService.findById(id));
     }
 }

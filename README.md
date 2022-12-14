@@ -34,7 +34,7 @@ ___
 - [x] ***Write your properties to application.properties file***
 - [x] ***Run the project***
 ___
-###  ***Example GET requests***
+###  ***Example requests***
 ```java
         http://localhost:8090/workers
         http://localhost:8090/workers/1

@@ -8,7 +8,7 @@ public interface ProposalService {
 
     Proposal update(Proposal proposal);
 
-    void updateProposalStatus(Long id, String key, String value);
+    void updateProposalStatus(Long id, String proposalStatus);
 
     Proposal findById(Long id);
 
