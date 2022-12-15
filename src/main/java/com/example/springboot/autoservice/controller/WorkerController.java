@@ -6,6 +6,7 @@ import com.example.springboot.autoservice.dto.request.WorkerRequestDto;
 import com.example.springboot.autoservice.dto.response.OrderResponseDto;
 import com.example.springboot.autoservice.dto.response.WorkerResponseDto;
 import com.example.springboot.autoservice.model.Worker;
+import com.example.springboot.autoservice.service.OrderService;
 import com.example.springboot.autoservice.service.WorkerService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class WorkerController {
     private final WorkerService workerService;
+    private final OrderService orderService;
     private final WorkerMapper workerMapper;
     private final OrderMapper orderMapper;
 
@@ -50,7 +52,7 @@ public class WorkerController {
     @ApiOperation(value = "get orders list by worker id")
     public List<OrderResponseDto> findAllOrdersByWorkerId(@PathVariable
                                                         @ApiParam(value = "worker id") Long id) {
-        return workerService.findAllOrdersByWorkerId(id).stream()
+        return orderService.findAllOrdersByWorkerId(id).stream()
                 .map(orderMapper::toDto)
                 .collect(Collectors.toList());
     }

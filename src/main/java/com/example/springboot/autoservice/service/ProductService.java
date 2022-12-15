@@ -11,4 +11,6 @@ public interface ProductService {
     List<Product> findAllById(List<Long> ids);
 
     Product findById(Long id);
+
+    List<Product> findAllProductsByOrderId(Long id);
 }

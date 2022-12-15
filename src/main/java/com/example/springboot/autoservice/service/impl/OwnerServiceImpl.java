@@ -1,10 +1,9 @@
 package com.example.springboot.autoservice.service.impl;
 
-import com.example.springboot.autoservice.model.Order;
 import com.example.springboot.autoservice.model.Owner;
 import com.example.springboot.autoservice.repository.OwnerRepository;
+import com.example.springboot.autoservice.service.OrderService;
 import com.example.springboot.autoservice.service.OwnerService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OwnerServiceImpl implements OwnerService {
     private final OwnerRepository ownerRepository;
+    private final OrderService orderService;
 
     @Override
     public Owner save(Owner owner) {
@@ -21,11 +21,6 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Owner update(Owner owner) {
         return ownerRepository.save(owner);
-    }
-
-    @Override
-    public List<Order> findAllOrdersByOwnerId(Long id) {
-        return ownerRepository.findAllOrdersByOwnerId(id);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.springboot.autoservice.service.impl;
 
-import com.example.springboot.autoservice.model.Order;
 import com.example.springboot.autoservice.model.Proposal;
 import com.example.springboot.autoservice.model.ProposalStatus;
 import com.example.springboot.autoservice.model.Worker;
@@ -36,19 +35,9 @@ public class WorkerServiceImpl implements WorkerService {
     }
 
     @Override
-    public List<Order> findAllOrdersByWorkerId(Long id) {
-        return workerRepository.findAllOrdersByWorkerId(id);
-    }
-
-    @Override
-    public List<Proposal> findAllProposalsByWorkerId(Long id) {
-        return workerRepository.findAllProposalsByWorkerId(id);
-    }
-
-    @Override
     public BigDecimal getSalary(Long id) {
         BigDecimal salary = BigDecimal.ZERO;
-        List<Proposal> proposals = findAllProposalsByWorkerId(id);
+        List<Proposal> proposals = proposalService.findAllProposalsByWorkerId(id);
         for (Proposal proposal : proposals) {
             if (proposal.getProposalStatus().equals(ProposalStatus.NOT_PAID)) {
                 salary = salary.add(proposal.getProposalPrice());

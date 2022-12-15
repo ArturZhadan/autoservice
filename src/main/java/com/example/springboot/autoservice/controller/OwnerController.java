@@ -6,6 +6,7 @@ import com.example.springboot.autoservice.dto.request.OwnerRequestDto;
 import com.example.springboot.autoservice.dto.response.OrderResponseDto;
 import com.example.springboot.autoservice.dto.response.OwnerResponseDto;
 import com.example.springboot.autoservice.model.Owner;
+import com.example.springboot.autoservice.service.OrderService;
 import com.example.springboot.autoservice.service.OwnerService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/owners")
 public class OwnerController {
     private final OwnerService ownerService;
+    private final OrderService orderService;
     private final OwnerMapper ownerMapper;
     private final OrderMapper orderMapper;
 
@@ -49,7 +51,7 @@ public class OwnerController {
     @ApiOperation(value = "get orders list by owner id")
     public List<OrderResponseDto> findAllOrdersByOwnerId(@PathVariable
                                                         @ApiParam(value = "owner id") Long id) {
-        return ownerService.findAllOrdersByOwnerId(id).stream()
+        return orderService.findAllOrdersByOwnerId(id).stream()
                 .map(orderMapper::toDto)
                 .collect(Collectors.toList());
     }

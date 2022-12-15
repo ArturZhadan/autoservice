@@ -7,6 +7,7 @@ import com.example.springboot.autoservice.model.Proposal;
 import com.example.springboot.autoservice.repository.OrderRepository;
 import com.example.springboot.autoservice.service.OrderService;
 import com.example.springboot.autoservice.service.ProductService;
+import com.example.springboot.autoservice.service.ProposalService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -23,6 +24,7 @@ public class OrderServiceImpl implements OrderService {
     private static final double PRODUCTS_DISCOUNT = 0.01;
     private final OrderRepository orderRepository;
     private final ProductService productService;
+    private final ProposalService proposalService;
 
     @Override
     public Order save(Order order) {
@@ -46,13 +48,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Proposal> findAllProposalsByOrderId(Long id) {
-        return orderRepository.findAllProposalsByOrderId(id);
+    public List<Order> findAllOrdersByOwnerId(Long id) {
+        return orderRepository.findAllOrdersByOwnerId(id);
     }
 
     @Override
-    public List<Product> findAllProductsByOrderId(Long id) {
-        return orderRepository.findAllProductsByOrderId(id);
+    public List<Order> findAllOrdersByWorkerId(Long id) {
+        return orderRepository.findAllOrdersByWorkerId(id);
     }
 
     @Override
@@ -85,13 +87,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public BigDecimal getPrice(Long id) {
         Order order = findById(id);
-        List<Proposal> proposals = findAllProposalsByOrderId(id);
+        List<Proposal> proposals = proposalService.findAllProposalsByOrderId(id);
         double proposalsPrice = proposals.stream()
                 .map(Proposal::getProposalPrice)
                 .mapToDouble(BigDecimal::doubleValue)
                 .sum();
         proposalsPrice = proposalsPrice - (proposals.size() * PROPOSALS_DISCOUNT);
-        List<Product> products = findAllProductsByOrderId(id);
+        List<Product> products = productService.findAllProductsByOrderId(id);
         double productsPrice = products.stream()
                 .map(Product::getProductPrice)
                 .mapToDouble(BigDecimal::doubleValue)
@@ -102,5 +104,4 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(order);
         return order.getOrderPrice();
     }
-
 }

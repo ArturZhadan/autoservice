@@ -13,4 +13,8 @@ public interface ProposalService {
     Proposal findById(Long id);
 
     List<Proposal> findAllById(List<Long> ids);
+
+    List<Proposal> findAllProposalsByOrderId(Long id);
+
+    List<Proposal> findAllProposalsByWorkerId(Long id);
 }

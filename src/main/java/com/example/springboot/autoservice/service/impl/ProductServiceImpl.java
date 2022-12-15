@@ -32,4 +32,9 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Can`t find product by id " + id));
     }
+
+    @Override
+    public List<Product> findAllProductsByOrderId(Long id) {
+        return productRepository.findAllProductsByOrderId(id);
+    }
 }

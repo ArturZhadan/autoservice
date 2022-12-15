@@ -1,8 +1,6 @@
 package com.example.springboot.autoservice.service;
 
 import com.example.springboot.autoservice.model.Order;
-import com.example.springboot.autoservice.model.Product;
-import com.example.springboot.autoservice.model.Proposal;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public interface OrderService {
 
     BigDecimal getPrice(Long id);
 
-    List<Proposal> findAllProposalsByOrderId(Long id);
+    List<Order> findAllOrdersByOwnerId(Long id);
 
-    List<Product> findAllProductsByOrderId(Long id);
+    List<Order> findAllOrdersByWorkerId(Long id);
 }
