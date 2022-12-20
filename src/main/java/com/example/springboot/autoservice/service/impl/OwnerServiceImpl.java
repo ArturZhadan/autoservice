@@ -2,7 +2,6 @@ package com.example.springboot.autoservice.service.impl;
 
 import com.example.springboot.autoservice.model.Owner;
 import com.example.springboot.autoservice.repository.OwnerRepository;
-import com.example.springboot.autoservice.service.OrderService;
 import com.example.springboot.autoservice.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OwnerServiceImpl implements OwnerService {
     private final OwnerRepository ownerRepository;
-    private final OrderService orderService;
 
     @Override
     public Owner save(Owner owner) {

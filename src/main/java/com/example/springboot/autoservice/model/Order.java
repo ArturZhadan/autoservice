@@ -3,6 +3,7 @@ package com.example.springboot.autoservice.model;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -108,6 +109,15 @@ public class Order {
     public void setCompletionDate(Date completionDate) {
         this.completionDate = completionDate;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(id, order.id) && Objects.equals(car, order.car) && Objects.equals(description, order.description) && Objects.equals(acceptanceDate, order.acceptanceDate) && Objects.equals(proposals, order.proposals) && Objects.equals(products, order.products) && orderStatus == order.orderStatus && Objects.equals(orderPrice, order.orderPrice) && Objects.equals(completionDate, order.completionDate);
+    }
+
 
     @Override
     public String toString() {

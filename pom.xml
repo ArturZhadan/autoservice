@@ -18,6 +18,7 @@
         <maven.checkstyle.plugin.configLocation>
             checkstyle.xml
         </maven.checkstyle.plugin.configLocation>
+        <testconteiners.version>1.16.2</testconteiners.version>
     </properties>
     <dependencies>
         <dependency>

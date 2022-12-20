@@ -1,6 +1,7 @@
 package com.example.springboot.autoservice.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -65,6 +66,15 @@ public class Proposal {
     public void setProposalStatus(ProposalStatus proposalStatus) {
         this.proposalStatus = proposalStatus;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Proposal proposal = (Proposal) o;
+        return Objects.equals(id, proposal.id) && Objects.equals(order, proposal.order) && Objects.equals(worker, proposal.worker) && Objects.equals(proposalPrice, proposal.proposalPrice) && proposalStatus == proposal.proposalStatus;
+    }
+
 
     @Override
     public String toString() {
