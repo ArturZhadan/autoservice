@@ -1,7 +1,7 @@
 package com.example.springboot.autoservice.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -14,8 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "orders")
@@ -26,8 +24,7 @@ public class Order {
     @ManyToOne
     private Car car;
     private String description;
-    @Temporal(TemporalType.DATE)
-    private Date acceptanceDate;
+    private LocalDate acceptanceDate;
     @OneToMany(mappedBy = "order")
     private List<Proposal> proposals;
     @ManyToMany
@@ -35,8 +32,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
     private BigDecimal orderPrice;
-    @Temporal(TemporalType.DATE)
-    private Date completionDate;
+    private LocalDate completionDate;
 
     public Long getId() {
         return id;
@@ -62,11 +58,11 @@ public class Order {
         this.description = description;
     }
 
-    public Date getAcceptanceDate() {
+    public LocalDate getAcceptanceDate() {
         return acceptanceDate;
     }
 
-    public void setAcceptanceDate(Date acceptanceDate) {
+    public void setAcceptanceDate(LocalDate acceptanceDate) {
         this.acceptanceDate = acceptanceDate;
     }
 
@@ -102,22 +98,38 @@ public class Order {
         this.orderPrice = orderPrice;
     }
 
-    public Date getCompletionDate() {
+    public LocalDate getCompletionDate() {
         return completionDate;
     }
 
-    public void setCompletionDate(Date completionDate) {
+    public void setCompletionDate(LocalDate completionDate) {
         this.completionDate = completionDate;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Order order = (Order) o;
-        return Objects.equals(id, order.id) && Objects.equals(car, order.car) && Objects.equals(description, order.description) && Objects.equals(acceptanceDate, order.acceptanceDate) && Objects.equals(proposals, order.proposals) && Objects.equals(products, order.products) && orderStatus == order.orderStatus && Objects.equals(orderPrice, order.orderPrice) && Objects.equals(completionDate, order.completionDate);
+        return Objects.equals(id, order.id) && Objects.equals(car, order.car)
+                && Objects.equals(description, order.description)
+                && Objects.equals(acceptanceDate, order.acceptanceDate)
+                && Objects.equals(proposals, order.proposals)
+                && Objects.equals(products, order.products)
+                && orderStatus == order.orderStatus
+                && Objects.equals(orderPrice, order.orderPrice)
+                && Objects.equals(completionDate, order.completionDate);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, car, description, acceptanceDate,
+                proposals, products, orderStatus, orderPrice, completionDate);
+    }
 
     @Override
     public String toString() {

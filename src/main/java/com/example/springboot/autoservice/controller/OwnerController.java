@@ -47,7 +47,7 @@ public class OwnerController {
         return ownerMapper.toDto(owner);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/orders")
     @ApiOperation(value = "get orders list by owner id")
     public List<OrderResponseDto> findAllOrdersByOwnerId(@PathVariable
                                                         @ApiParam(value = "owner id") Long id) {

@@ -10,8 +10,6 @@ import com.example.springboot.autoservice.service.ProductService;
 import com.example.springboot.autoservice.service.ProposalService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -65,8 +63,7 @@ public class OrderServiceImpl implements OrderService {
             order.setOrderStatus(OrderStatus.valueOf(orderStatus));
             if (orderStatus.equalsIgnoreCase("completed_successfully")
                     || orderStatus.equalsIgnoreCase("not_completed_successfully")) {
-                order.setCompletionDate(Date.from(LocalDate.now()
-                        .atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                order.setCompletionDate(LocalDate.now());
             }
             orderRepository.save(order);
         }

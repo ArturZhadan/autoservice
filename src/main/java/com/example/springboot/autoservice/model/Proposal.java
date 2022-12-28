@@ -69,12 +69,24 @@ public class Proposal {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Proposal proposal = (Proposal) o;
-        return Objects.equals(id, proposal.id) && Objects.equals(order, proposal.order) && Objects.equals(worker, proposal.worker) && Objects.equals(proposalPrice, proposal.proposalPrice) && proposalStatus == proposal.proposalStatus;
+        return Objects.equals(id, proposal.id)
+                && Objects.equals(order, proposal.order)
+                && Objects.equals(worker, proposal.worker)
+                && Objects.equals(proposalPrice, proposal.proposalPrice)
+                && proposalStatus == proposal.proposalStatus;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, order, worker, proposalPrice, proposalStatus);
+    }
 
     @Override
     public String toString() {

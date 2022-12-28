@@ -41,7 +41,7 @@ public class ProposalController {
         return proposalMapper.toDto(proposal);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/status")
     @ApiOperation(value = "update proposal status by id")
     public ProposalResponseDto updateProposalStatus(@PathVariable
                                                         @ApiParam(value = "proposal id") Long id,

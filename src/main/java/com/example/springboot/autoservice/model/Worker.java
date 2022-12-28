@@ -54,12 +54,23 @@ public class Worker {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Worker worker = (Worker) o;
-        return Objects.equals(id, worker.id) && Objects.equals(firstName, worker.firstName) && Objects.equals(lastName, worker.lastName) && Objects.equals(orders, worker.orders);
+        return Objects.equals(id, worker.id)
+                && Objects.equals(firstName, worker.firstName)
+                && Objects.equals(lastName, worker.lastName)
+                && Objects.equals(orders, worker.orders);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, orders);
+    }
 
     @Override
     public String toString() {

@@ -44,7 +44,7 @@ public class OrderController {
         return orderMapper.toDto(order);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/status")
     @ApiOperation(value = "update order status by id")
     public OrderResponseDto updateOrderStatus(@PathVariable @ApiParam(value = "order id") Long id,
                                   @RequestBody OrderStatusRequestDto dto) {

@@ -1,6 +1,7 @@
 package com.example.springboot.autoservice.model;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +42,24 @@ public class Owner {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Owner owner = (Owner) o;
+        return Objects.equals(id, owner.id) && Objects.equals(cars, owner.cars)
+                && Objects.equals(orders, owner.orders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cars, orders);
     }
 
     @Override

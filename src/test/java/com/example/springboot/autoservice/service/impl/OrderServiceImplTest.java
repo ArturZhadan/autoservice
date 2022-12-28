@@ -8,12 +8,8 @@ import com.example.springboot.autoservice.repository.OrderRepository;
 import com.example.springboot.autoservice.service.ProductService;
 import com.example.springboot.autoservice.service.ProposalService;
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,16 +33,15 @@ class OrderServiceImplTest {
     private ProposalService proposalService;
 
     @Test
-    public void updateOrderStatus_Ok() throws ParseException {
+    public void updateOrderStatus_Ok() {
         Order order = new Order();
         order.setId(1L);
         order.setOrderStatus(OrderStatus.IN_PROCESS);
-        order.setCompletionDate(new SimpleDateFormat("yyyy-MM-dd").parse("2022-30-12"));
+        order.setCompletionDate(LocalDate.parse("2022-12-15"));
         Mockito.when(orderRepository.findById(1L)).thenReturn(Optional.of(order));
         orderService.updateOrderStatus(1L, "COMPLETED_SUCCESSFULLY");
         Assertions.assertEquals(OrderStatus.COMPLETED_SUCCESSFULLY, order.getOrderStatus());
-        Assertions.assertEquals(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                order.getCompletionDate());
+        Assertions.assertEquals(LocalDate.now(), order.getCompletionDate());
     }
 
     @Test

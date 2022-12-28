@@ -1,6 +1,7 @@
 package com.example.springboot.autoservice.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,6 +39,24 @@ public class Product {
 
     public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) && Objects.equals(name, product.name)
+                && Objects.equals(productPrice, product.productPrice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, productPrice);
     }
 
     @Override
